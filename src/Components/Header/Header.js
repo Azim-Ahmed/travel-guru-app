@@ -1,18 +1,20 @@
 import React from 'react';
 import './Header.css'
 import logo from '../../Icon/Logo.png'
-import { Button } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 
 
 
 const Header = () => {
     return (
-        <div>
+        <Container>
+
             <nav className="nav">
+                <div>
+                <img className="logo" src={logo} alt=""/>
+                </div>
                 <ul>
-                    <li>
-                        <img className="logo" src={logo} alt=""/>
-                    </li>
+                    
                     <li>
                         <input  className = "searchtype" placeholder =" Search for Your Trip" type="text"/>
                     </li>
@@ -30,7 +32,7 @@ const Header = () => {
                     </li>
                 </ul>
             </nav>
-        </div>
+        </Container>
     );
 };
 

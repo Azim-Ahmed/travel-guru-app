@@ -9,7 +9,7 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 6.99,
-            id: "place1",
+            id: 1,
             category: "coxsbazar",
             imgUrl: "https://i.ibb.co/PDMZpdK/Screenshot-143.png",
         },
@@ -21,7 +21,7 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 9.99,
-            id: "place2",
+            id: 2,
             category: "sreemangal",
             imgUrl: "https://i.ibb.co/QJSRvvB/Sreemongol.png",
         },
@@ -32,7 +32,7 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 10.99,
-            id: "place3",
+            id: 3,
             category: "sundarbans",
             imgUrl: "https://i.ibb.co/C29RrtP/sundorbon.png",
         },
@@ -43,7 +43,7 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 8.99,
-            id: "place4",
+            id: 4,
             category: "breakfast",
             imgUrl: "https://i.ibb.co/48qvqVL/Sajek.png",
         },
@@ -53,7 +53,7 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 19.99,
-            id: "place5",
+            id: 5,
             category: "coxsbazar",
             imgUrl: "https://i.ibb.co/KrBZv0v/breakfast5.png",
         },
@@ -63,7 +63,7 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 3.99,
-            id: "breakfast6",
+            id: 6,
             category: "coxsbazar",
             imgUrl: "https://i.ibb.co/HDvYygc/breakfast6.png",
         },
@@ -74,49 +74,49 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 23.99,
-            id: "lunch1",
+            id: 7,
             category: "coxsbazar",
             imgUrl: "https://i.ibb.co/LpX53B6/lunch1.png",
         },
         {
-            title: "Fried Chicken Bento",
+            title: "Charming Room",
             desc: "How we dream about our future",
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
-            price: 9.99,
-            id: "lunch2",
-            category: "sreemangal",
-            imgUrl: "https://i.ibb.co/nB8GVVb/lunch2.png",
+            price: 45.99,
+            id: 8,
+            category: "room",
+            imgUrl: "https://i.ibb.co/b6t7L7Z/Rectangle-28.png",
         },
         {
-            title: "Tarragon-Rubbged Salmon",
+            title: "Attached Swiming Room",
             desc: "How we dream about our future",
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 6.99,
-            id: "lunch3",
-            category: "sreemangal",
+            id:9,
+            category: "cat",
             imgUrl: "https://i.ibb.co/dK6mjf7/lunch3.png",
         },
         {
-            title: "Indian Lunch",
+            title: "Refreshment Room",
             desc: "How we dream about our future",
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
-            price: 8.99,
-            id: "lunch4",
-            category: "sreemangal",
-            imgUrl: "https://i.ibb.co/mJHFXxJ/lunch4.png",
+            price: 88.99,
+            id: 10,
+            category: "room",
+            imgUrl: "https://i.ibb.co/svWhBjv/Rectangle-26.png",
         },
         {
-            title: "Beef Steak",
+            title: "Broad Room",
             desc: "How we dream about our future",
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
-            price: 15.99,
-            id: "lunch5",
-            category: "lunch",
-            imgUrl: "https://i.ibb.co/rmm7rpy/lunch5.png",
+            price: 125.99,
+            id: 11,
+            category: "room",
+            imgUrl: "https://i.ibb.co/vxSkqry/Rectangle-27.png",
         },
         {
             title: "Honey-Soy-Glazed with Peppers",
@@ -124,9 +124,9 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 7.99,
-            id: "lunch6",
+            id: 12,
             category: "sundarbans",
-            imgUrl: "https://i.ibb.co/jyj7PhV/lunch6.png",
+            imgUrl: "https://i.ibb.co/b6t7L7Z/Rectangle-28.png",
         },
         {
             title: "Salmon with Grapefruit and Lentil Salad",
@@ -134,7 +134,7 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 9.99,
-            id: "dinner1",
+            id: 13,
             category: "sundarbans",
             imgUrl: "https://i.ibb.co/R9P5dkP/dinner1.png",
         },
@@ -144,51 +144,11 @@ var profile =
             longDesc:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
             price: 10.99,
-            id: "dinner2",
+            id: 14,
             category: "sundarbans",
             imgUrl: "https://i.ibb.co/0XBW4c8/dinner2.png",
-        },
-        {
-            title: "Prok Tenderloin with Quinoa Pilaf",
-            desc: "How we dream about our future",
-            longDesc:
-                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
-            price: 12.99,
-            id: "dinner3",
-            category: "dinner",
-            imgUrl: "https://i.ibb.co/M2ZX4XT/dinner3.png",
-        },
-        {
-            title: "French fries with cheese",
-            desc: "How we dream about our future",
-            longDesc:
-                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
-            price: 8.99,
-            id: "dinner4",
-            category: "dinner",
-            imgUrl: "https://i.ibb.co/yRC7qRS/dinner4.png",
-        },
-        {
-            title: "Garlic fries with cheese",
-            desc: "How we dream about our future",
-            longDesc:
-                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
-            price: 6.99,
-            id: "dinner5",
-            category: "dinner",
-            imgUrl: "https://i.ibb.co/9nrrTjn/dinner5.png",
-        },
-        {
-            title: "baked chiken",
-            desc: "How we dream about our future",
-            longDesc:
-                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet aspernatur ex odio numquam minus at, debitis modi sit corrupti minima? Consequuntur quaerat, dolorum",
-            price: 9.99,
-            id: "dinner6",
-            category: "dinner",
-            imgUrl: "https://i.ibb.co/GCLRdzH/dinner6.png",
         }
-
+        
 
 
         

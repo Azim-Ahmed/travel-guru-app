@@ -6,7 +6,7 @@ import { initializeLogInFramework, handleGoogleSignIn, handleSignOut, signInFB, 
 
 
 
-function Login() {
+function Logins() {
   const [newUser, setNewUser] = useState(false)
   const [users, setUsers] = useState({
     isSignedIn: false,
@@ -128,4 +128,4 @@ const handleResponse = (res, redirect) =>{
   );
 }
 
-export default Login;
+export default Logins;

@@ -1,5 +1,4 @@
 import React, { createContext, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -11,6 +10,9 @@ import Home from './Components/Home/Home';
 import PlaceDetails from './Components/PlaceDetails/PlaceDetails';
 import Header from './Components/Header/Header';
 import Login from './Components/Login/Login';
+import Logins from './Components/LoginAuth/Login';
+import Search from './Components/Search/Search';
+import PrivateRoute from './Components/LoginAuth/PrivateRoute';
 
 export const UserContext = createContext()
 
@@ -19,12 +21,12 @@ function App() {
 
 
   return (
-    <UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>
-      <h1>name: {loggedInUser.email}</h1>
+    <section style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://i.ibb.co/dKVDK2P/Rectangle-1.png')`, paddingBottom : "300px"}}>
+    <UserContext.Provider  value = {[loggedInUser, setLoggedInUser]}>
       <Router>
         <Header></Header>
         <Switch>
-          <Route path={`/book/:id`}>
+          <Route path="/book/:id">
             <PlaceDetails></PlaceDetails>
 
           </Route>
@@ -32,12 +34,13 @@ function App() {
             <Login></Login>
 
           </Route>
-          <Route path='/'>
-            <Home></Home>
+          <PrivateRoute path='/search'>
 
-          </Route>
-          <Route path='/'>
-            <Home></Home>
+            <Search></Search>
+
+          </PrivateRoute>
+          <Route path='/search'>
+            <Search></Search>
 
           </Route>
           <Route path='/'>
@@ -48,6 +51,7 @@ function App() {
       </Router>
 
     </UserContext.Provider>
+    </section>
   );
 }
 
