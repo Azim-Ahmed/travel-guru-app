@@ -8,18 +8,18 @@ import { initializeLogInFramework, handleGoogleSignIn, handleSignOut, signInFB, 
 
 function Logins() {
   const [newUser, setNewUser] = useState(false)
-  const [users, setUsers] = useState({
-    isSignedIn: false,
-    name: '',
-    email: '',
-    password: '',
-    photo: '',
-    error: '',
-    success: false,
-  });
+  // const [users, setUsers] = useState({
+  //   isSignedIn: false,
+  //   name: '',
+  //   email: '',
+  //   password: '',
+  //   photo: '',
+  //   error: '',
+  //   success: false,
+  // });
   initializeLogInFramework()
 
-const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+const [loggedInUser, setLoggedInUser, users, setUsers] = useContext(UserContext)
  const history = useHistory()
  const location = useLocation()
  let { from } = location.state || { from: { pathname: "/" } };

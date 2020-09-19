@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css'
 import logo from '../../Icon/Logo.png'
 import { Button, Container } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 
@@ -11,24 +12,24 @@ const Header = () => {
 
             <nav className="nav">
                 <div>
-                <img className="logo" src={logo} alt=""/>
+                <Link to="/home"><img className="logo" src={logo} alt=""/></Link>
                 </div>
                 <ul>
                     
                     <li>
-                        <input  className = "searchtype" placeholder =" Search for Your Trip" type="text"/>
+                        <input className = "searchtype" placeholder =" Search for Your Trip" type="text"/>
                     </li>
                     <li>
-                        <a href="/login">News</a>
+                        <Link to="/news">News</Link>
                     </li>
                     <li>
-                        <a className="btn-book" href="/book">Destination</a>
+                        <Link className="btn-book" to="/search">Destination</Link>
                     </li>
                     <li>
-                        <a className="btn-book" href="/book">Blog</a>
+                        <Link className="btn-book" to="/blog">Blog</Link>
                     </li>
                     <li>
-                        <a className="btn-book" href="/login"> <Button size ="lg" color ="warning"> Login</Button> </a>
+                        <Link className="btn-book" to="/login"> <Button size ="lg" color ="warning"> Login</Button> </Link>
                     </li>
                 </ul>
             </nav>

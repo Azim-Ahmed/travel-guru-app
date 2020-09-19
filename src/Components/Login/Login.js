@@ -10,7 +10,9 @@ const Login = () => {
 
     //**Google Sign In Area */
 
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [ user, setUser] = useContext(UserContext)
+
+    const [newUser, setnewUser] = useState(false)
 
     const history = useHistory()
  const location = useLocation()
@@ -30,7 +32,7 @@ const Login = () => {
 
             const { displayName, email } = result.user;
             const signedInUser = { name: displayName, email }
-            setLoggedInUser(signedInUser)
+            setUser(signedInUser)
             history.replace(from)
 
         }).catch(err => {
@@ -46,24 +48,13 @@ const Login = () => {
 
             const { displayName, email } = result.user;
             const signedInUser = { name: displayName, email }
-            setLoggedInUser(signedInUser)
+            setUser(signedInUser)
             history.replace(from)
             // ...
         }).catch(function (error) {
             console.log(error);
         });
     }
-
-
-
-
-    const [newUser, setnewUser] = useState(false)
-    const [user, setUser] = useState({
-        name: '',
-        email: '',
-        password: '',
-        photo: ''
-    })
 
     const handleBlurChange = (e) => {
 
@@ -76,11 +67,14 @@ const Login = () => {
         if (e.target.name === 'password') {
             const isPasswordValidlength = e.target.value.length > 5
             const isPasswordValid = /\d{1}/.test(e.target.value)
+            const newUserInfo = {...user}
+            newUserInfo.error = "Password is Not valid"
             isFieldValid = isPasswordValid && isPasswordValidlength
         }
         if (isFieldValid) {
 
             const newUserInfo = { ...user }
+            newUserInfo.error = ''
             newUserInfo[e.target.name] = e.target.value;
             setUser(newUserInfo)
         }
@@ -89,7 +83,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
 
-        if (newUser && user.email && user.password) {
+        if (newUser && user.email && user.password && user.confirmPassword) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
                 .then(res => {
                     const newUserInfo = { ...user }
@@ -97,6 +91,8 @@ const Login = () => {
                     newUserInfo.success = true
                      updateUserName(user.name)
                     setUser(newUserInfo)
+                    history.replace(from)
+                    
                     // 
                 })
                 .catch(function (error) {
@@ -115,6 +111,7 @@ const Login = () => {
                         newUserInfo.success = true
                         newUserInfo[user.name] = res.user.displayName
                         setUser(newUserInfo)
+                        history.replace(from)
                        
                     })
                     .catch(function (error) {
@@ -132,14 +129,9 @@ const Login = () => {
     }
     const updateUserName = name => {
         const user = firebase.auth().currentUser;
-
         user.updateProfile({
-            displayName: name,
-        }).then(function () {
-            console.log("update User Name", user.displayName);
-        }).catch(function (error) {
-            console.log(error);
-        });
+            displayName: name
+        })
     }
 
 
@@ -168,7 +160,7 @@ const Login = () => {
                             type="name"
                             onBlur={handleBlurChange}
                             name="email"
-                            placeholder="Enter Your Password"
+                            placeholder="Enter Your Email"
                         />
                     </FormGroup>
                     <FormGroup>
@@ -180,12 +172,22 @@ const Login = () => {
                             placeholder="Enter Your Password"
                         />
                     </FormGroup>
+                    {newUser && <FormGroup>
+                        <Label for="name">Confirm Password</Label>
+                        <Input
+
+                            type="password"
+                            onBlur={handleBlurChange}
+                            name="password"
+                            placeholder="Enter Your Confirm Password"
+                        />
+                    </FormGroup>}
 
 
-                    <Button size='lg' color="success"> <strong>Login</strong> </Button>
+                    <Button size='lg' color="success"> <strong> {newUser ? "Sign Up" : "Sign In"} </strong> </Button>
                     <h3 style={{ color: 'red' }}>{user.error}</h3>
                     {user.success && <h3 style={{ color: 'green' }}>User {newUser ? 'Created' : "Logged"} SuccessFully</h3>}
-                    {loggedInUser.email && <h3 style={{ color: 'green' }}>User LoggedIn SuccessFully</h3>}
+                    {user.email && <h3 style={{ color: 'green' }}>User LoggedIn SuccessFully</h3>}
                 </Form>
 
                 <Button color="warning"> <h4 onClick={() => setnewUser(!newUser)}>Need To Sign Up?</h4></Button>
@@ -196,6 +198,7 @@ const Login = () => {
 
             <h1>This Is google AuthenTication</h1>
             <Button color='success' onClick={handleGoogleSignIn}>Continue With Google </Button>
+            <br/>
 
             <Button color='success' onClick={handleFacebookSignIn}>Continue With Facebook </Button>
 

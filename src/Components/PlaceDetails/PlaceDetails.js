@@ -1,39 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Button, Container } from 'reactstrap';
+import { Button, Col, Container, Row } from 'reactstrap';
 import fakeData from '../../fakeData/Profile'
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 
 const PlaceDetails = () => {
-    const { id } = useParams()
-
-    const fakeDataa = fakeData.slice(0,3)
-   
-const matchId = fakeDataa.map(place => place.id ===  id )
-console.log(matchId);
+     const { placeId } = useParams()
+    const matchingCardDetails = fakeData.find(item => item.id === parseInt(placeId))
+const {title, description} = matchingCardDetails
    
   
-    const styleContainer ={
-        display : "flex",
-
-    }
+    
     const submitForm = (e)=>{
         e.preventDefault()
     }
 
     return (
 
-        <Container>
-            <div style = {styleContainer}>
+        <Container style = {{color : "white"}}>
+            <Row>
+              <Col style = {{border : "2px solid white", boxShadow  : "5px 5px 10px black"}} md = {5}>
+              <h1>{title}</h1>
+                        <p>{description}</p>
+              </Col>
               
-              
-                <div style ={{width : "50%", color : "white", border : "2px solid gray"}}>
-                        {/* <h1>{title}</h1>
-                        <p>{longDesc}</p> */}
+               
+                       
 
-                </div>
-                <div style ={{width : "50%", color : "white"}}>
+               
+               
+                  <Col md = {7}>
                 <Form onSubmit = {submitForm}>
      
      <FormGroup>
@@ -57,7 +54,7 @@ console.log(matchId);
        <Input
           type="date"
           name="date"
-          id="exampleDate"
+          id="exampleDatetime"
           placeholder="date placeholder"
        />
      </FormGroup>
@@ -71,11 +68,12 @@ console.log(matchId);
        />
      </FormGroup>
      
-     <Link to ='/login'><Button size='lg' block color="primary">Start Booking</Button></Link>
+     <Link to ='/search'><Button size='lg' block color="primary">Start Booking</Button></Link>
    </Form>
-
-                </div>
-            </div>
+   </Col>
+             
+                
+            </Row>
 
         </Container >
     );
