@@ -10,13 +10,13 @@ const Login = () => {
 
     //**Google Sign In Area */
 
-    const [ user, setUser] = useContext(UserContext)
+    const [user, setUser] = useContext(UserContext)
 
     const [newUser, setnewUser] = useState(false)
 
     const history = useHistory()
  const location = useLocation()
- let { from } = location.state || { from: { pathname: "/" } };
+ let { from } = location.state || { from: { pathname: "/search" } };
 
 
     if (firebase.apps.length === 0) {
@@ -31,7 +31,7 @@ const Login = () => {
 
 
             const { displayName, email } = result.user;
-            const signedInUser = { name: displayName, email }
+            const signedInUser = { first: displayName, email }
             setUser(signedInUser)
             history.replace(from)
 
@@ -47,7 +47,7 @@ const Login = () => {
         firebase.auth().signInWithPopup(fbProvider).then(function (result) {
 
             const { displayName, email } = result.user;
-            const signedInUser = { name: displayName, email }
+            const signedInUser = { first: displayName, email }
             setUser(signedInUser)
             history.replace(from)
             // ...
@@ -55,6 +55,13 @@ const Login = () => {
             console.log(error);
         });
     }
+
+
+
+
+   
+    
+    
 
     const handleBlurChange = (e) => {
 
@@ -67,14 +74,11 @@ const Login = () => {
         if (e.target.name === 'password') {
             const isPasswordValidlength = e.target.value.length > 5
             const isPasswordValid = /\d{1}/.test(e.target.value)
-            const newUserInfo = {...user}
-            newUserInfo.error = "Password is Not valid"
             isFieldValid = isPasswordValid && isPasswordValidlength
         }
         if (isFieldValid) {
 
             const newUserInfo = { ...user }
-            newUserInfo.error = ''
             newUserInfo[e.target.name] = e.target.value;
             setUser(newUserInfo)
         }
@@ -82,56 +86,73 @@ const Login = () => {
 
 
     const handleSubmit = (e) => {
+        console.log(user.email , user.password);
 
-        if (newUser && user.email && user.password && user.confirmPassword) {
+        if ( user.email && (user.password === user.confirmPassword)) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-                .then(res => {
+                .then(res => { 
                     const newUserInfo = { ...user }
                     newUserInfo.error = ''
-                    newUserInfo.success = true
-                     updateUserName(user.name)
+                    newUserInfo.success = "Account created successfully!"
+                    newUserInfo.first = `${user.first} ${user.last}`
                     setUser(newUserInfo)
+                    updateUserName(user.first)
                     history.replace(from)
-                    
+                    console.log(res.user)
                     // 
                 })
                 .catch(function (error) {
                     const newUserInfo = { ...user }
                     newUserInfo.error = error.message
-                    newUserInfo.success = false
+                    newUserInfo.success = ''
                     setUser(newUserInfo)
                     // ...
                 });
-            if (!newUser && user.email && user.password) {
-                firebase.auth().signInWithEmailAndPassword(user.email && user.password)
-                    .then(res => {
-                        const newUserInfo = { ...user }
 
-                        newUserInfo.error = ''
-                        newUserInfo.success = true
-                        newUserInfo[user.name] = res.user.displayName
-                        setUser(newUserInfo)
-                        history.replace(from)
-                       
-                    })
-                    .catch(function (error) {
-                        const newUserInfo = { ...user }
-                        newUserInfo.error = error.message
-                        newUserInfo.success = false
-                        setUser(newUserInfo)
-                        console.log(error);
-                    });
-            }
+
+                
+            
 
         }
         e.preventDefault()
 
     }
+    
+    const handleSignIn = (e) => {
+       if(user.email && user.password) {
+        firebase.auth().signInWithEmailAndPassword(user.email && user.password)
+        .then(res => {
+            const newUserInfo = { ...user }
+
+            newUserInfo.error = ''
+            newUserInfo.success = 'Logged Successfully'
+            newUserInfo[user.first] = res.user.displayName
+            setUser(newUserInfo)
+            history.replace(from)
+           
+        })
+        .catch(function (error) {
+            const newUserInfo = { ...user }
+            newUserInfo.error = error.message
+            newUserInfo.success = ''
+            setUser(newUserInfo)
+            console.log(error);
+        });
+        e.preventDefault()
+       }
+      
+
+     }
     const updateUserName = name => {
         const user = firebase.auth().currentUser;
+
         user.updateProfile({
-            displayName: name
-        })
+            displayName: name,
+        }).then(function () {
+            console.log("update User Name", user.displayName);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 
 
@@ -142,7 +163,7 @@ const Login = () => {
             <div>
                 <h1>This is Login Area</h1>
 
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={ newUser ? handleSubmit : handleSignIn}>
                     {newUser && <FormGroup>
                         <Label for="name">Name</Label>
                         <Input
@@ -173,34 +194,40 @@ const Login = () => {
                         />
                     </FormGroup>
                     {newUser && <FormGroup>
-                        <Label for="name">Confirm Password</Label>
+                        <Label for="location">Password</Label>
                         <Input
-
                             type="password"
                             onBlur={handleBlurChange}
                             name="password"
-                            placeholder="Enter Your Confirm Password"
+                            placeholder="Enter Your Password"
                         />
                     </FormGroup>}
 
 
-                    <Button size='lg' color="success"> <strong> {newUser ? "Sign Up" : "Sign In"} </strong> </Button>
-                    <h3 style={{ color: 'red' }}>{user.error}</h3>
+                    <Button size='lg' color="warning"> <strong> {newUser ? "Sign Up" : 'Login'} </strong> </Button>
+
+                    <p className='login__alreadyText'>{newUser ? "Already have an account?" : "Create An Account"} <span style={{ color: '#F9A51A', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setnewUser(!newUser)}>{newUser ? "Login" : "Sign Up"}</span></p>
+
+
+                    
                     {user.success && <h3 style={{ color: 'green' }}>User {newUser ? 'Created' : "Logged"} SuccessFully</h3>}
-                    {user.email && <h3 style={{ color: 'green' }}>User LoggedIn SuccessFully</h3>}
+                   
                 </Form>
 
-                <Button color="warning"> <h4 onClick={() => setnewUser(!newUser)}>Need To Sign Up?</h4></Button>
+               
             </div>
 
 
 
 
             <h1>This Is google AuthenTication</h1>
+
+            
             <Button color='success' onClick={handleGoogleSignIn}>Continue With Google </Button>
             <br/>
+            <br/>
 
-            <Button color='success' onClick={handleFacebookSignIn}>Continue With Facebook </Button>
+            <Button color='primary' onClick={handleFacebookSignIn}>Continue With Facebook </Button>
 
         </div>
     );

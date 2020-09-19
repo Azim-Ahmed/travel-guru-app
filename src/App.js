@@ -18,22 +18,23 @@ import PrivateRoute from './Components/LoginAuth/PrivateRoute';
 export const UserContext = createContext()
 
 function App() {
+  // const [loggedInUser, setLoggedInUser] = useState({})
   const [user, setUser] = useState({
-    isSignedIn: false,
     name: '',
+    first: '',
+    last: '',
     email: '',
     password: '',
     confirmPassword: '',
-    photo: '',
     error: '',
-    success: false,
-  });
+    success: ''
+  })
  
 
 
   return (
     <section style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://i.ibb.co/dKVDK2P/Rectangle-1.png')`, paddingBottom : "300px"}}>
-    <UserContext.Provider  value = {[user, setUser]}>
+    <UserContext.Provider  value = {[ user, setUser]}>
       <Router>
         <Header></Header>
         <Switch>
