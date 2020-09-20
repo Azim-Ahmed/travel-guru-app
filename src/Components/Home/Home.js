@@ -7,7 +7,7 @@ import { Container, Row } from 'reactstrap';
 import TravelArea from '../TravelArea/TravelArea';
 
 const Home = () => {
-  const placeCard = fakedata.slice(0,3)
+  const placeCard = fakedata.slice(0, 3)
 
   return (
 

@@ -15,8 +15,8 @@ const Login = () => {
     const [newUser, setnewUser] = useState(false)
 
     const history = useHistory()
- const location = useLocation()
- let { from } = location.state || { from: { pathname: "/search" } };
+    const location = useLocation()
+    let { from } = location.state || { from: { pathname: "/search" } };
 
 
     if (firebase.apps.length === 0) {
@@ -59,9 +59,9 @@ const Login = () => {
 
 
 
-   
-    
-    
+
+
+
 
     const handleBlurChange = (e) => {
 
@@ -86,11 +86,11 @@ const Login = () => {
 
 
     const handleSubmit = (e) => {
-        console.log(user.email , user.password);
+        console.log(user.email, user.password);
 
-        if ( user.email && (user.password === user.confirmPassword)) {
+        if (user.email && (user.password === user.confirmPassword)) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-                .then(res => { 
+                .then(res => {
                     const newUserInfo = { ...user }
                     newUserInfo.error = ''
                     newUserInfo.success = "Account created successfully!"
@@ -110,39 +110,39 @@ const Login = () => {
                 });
 
 
-                
-            
+
+
 
         }
         e.preventDefault()
 
     }
-    
+
     const handleSignIn = (e) => {
-       if(user.email && user.password) {
-        firebase.auth().signInWithEmailAndPassword(user.email && user.password)
-        .then(res => {
-            const newUserInfo = { ...user }
+        if (user.email && user.password) {
+            firebase.auth().signInWithEmailAndPassword(user.email && user.password)
+                .then(res => {
+                    const newUserInfo = { ...user }
 
-            newUserInfo.error = ''
-            newUserInfo.success = 'Logged Successfully'
-            newUserInfo[user.first] = res.user.displayName
-            setUser(newUserInfo)
-            history.replace(from)
-           
-        })
-        .catch(function (error) {
-            const newUserInfo = { ...user }
-            newUserInfo.error = error.message
-            newUserInfo.success = ''
-            setUser(newUserInfo)
-            console.log(error);
-        });
-        e.preventDefault()
-       }
-      
+                    newUserInfo.error = ''
+                    newUserInfo.success = 'Logged Successfully'
+                    newUserInfo[user.first] = res.user.displayName
+                    setUser(newUserInfo)
+                    history.replace(from)
 
-     }
+                })
+                .catch(function (error) {
+                    const newUserInfo = { ...user }
+                    newUserInfo.error = error.message
+                    newUserInfo.success = ''
+                    setUser(newUserInfo)
+                    console.log(error);
+                });
+            e.preventDefault()
+        }
+
+
+    }
     const updateUserName = name => {
         const user = firebase.auth().currentUser;
 
@@ -158,12 +158,12 @@ const Login = () => {
 
 
     return (
-        <div style={{ textAlign: "center", color : "white" }}>
+        <div style={{ textAlign: "center", color: "white" }}>
             {user.name}
             <div>
                 <h1>This is Login Area</h1>
 
-                <Form onSubmit={ newUser ? handleSubmit : handleSignIn}>
+                <Form onSubmit={newUser ? handleSubmit : handleSignIn}>
                     {newUser && <FormGroup>
                         <Label for="name">Name</Label>
                         <Input
@@ -209,12 +209,12 @@ const Login = () => {
                     <p className='login__alreadyText'>{newUser ? "Already have an account?" : "Create An Account"} <span style={{ color: '#F9A51A', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setnewUser(!newUser)}>{newUser ? "Login" : "Sign Up"}</span></p>
 
 
-                    
+
                     {user.success && <h3 style={{ color: 'green' }}>User {newUser ? 'Created' : "Logged"} SuccessFully</h3>}
-                   
+
                 </Form>
 
-               
+
             </div>
 
 
@@ -222,10 +222,10 @@ const Login = () => {
 
             <h1>This Is google AuthenTication</h1>
 
-            
+
             <Button color='success' onClick={handleGoogleSignIn}>Continue With Google </Button>
-            <br/>
-            <br/>
+            <br />
+            <br />
 
             <Button color='primary' onClick={handleFacebookSignIn}>Continue With Facebook </Button>
 

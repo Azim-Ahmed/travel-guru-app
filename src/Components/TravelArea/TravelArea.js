@@ -1,22 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardBody, Button, CardTitle, CardImg } from 'reactstrap';
+import { Card, Button, CardTitle, CardImg } from 'reactstrap';
 
 const TravelArea = (props) => {
-  const { title, imgUrl,id } = props.mainTravelPhoto;
+  const { title, imgUrl, id } = props.mainTravelPhoto;
 
   return (
+    <Link to={`/book/${id}`}>
+      <Card style={{ background: { imgUrl }, backgroundColor: "gray" }}>
 
-    <Card>
-      <CardImg width="50%" src={imgUrl} alt="Travel Guru Photos" />
-      <CardBody>
-        <CardTitle>{title}</CardTitle>
+        <CardImg width="50%" src={imgUrl} alt="Travel Guru Photos" />
+        <Button color="warning"> <CardTitle><strong>{title}</strong></CardTitle></Button>
 
-
-        <Link to={`/book/${id}`}><Button color="success" size='lg'>Book Now</Button></Link>
-      </CardBody>
-    </Card>
-
+      </Card>
+    </Link>
 
   );
 };

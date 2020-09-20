@@ -9,16 +9,17 @@ import Home from './Components/Home/Home';
 import PlaceDetails from './Components/PlaceDetails/PlaceDetails';
 import Header from './Components/Header/Header';
 import Login from './Components/Login/Login';
-import Logins from './Components/LoginAuth/Login';
 import Search from './Components/Search/Search';
-import PrivateRoute from './Components/LoginAuth/PrivateRoute';
+
+import NoMatch from './Components/NoMatch/NoMatch';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 
 
 export const UserContext = createContext()
 
 function App() {
-  // const [loggedInUser, setLoggedInUser] = useState({})
+
   const [user, setUser] = useState({
     name: '',
     first: '',
@@ -29,36 +30,44 @@ function App() {
     error: '',
     success: ''
   })
- 
+
 
 
   return (
-    <section style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://i.ibb.co/dKVDK2P/Rectangle-1.png')`, paddingBottom : "300px"}}>
-    <UserContext.Provider  value = {[ user, setUser]}>
-      <Router>
-        <Header></Header>
-        <Switch>
-          <Route path="/book/:placeId">
-            <PlaceDetails></PlaceDetails>
-          </Route>
-          
-          <PrivateRoute path='/search'>
+    <section style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://i.ibb.co/dKVDK2P/Rectangle-1.png')`, paddingBottom: "300px" }}>
+      <UserContext.Provider value={[user, setUser]}>
+        <Router>
+          <Header></Header>
+          <Switch>
+            <Route path="/book/:placeId">
+              <PlaceDetails></PlaceDetails>
+            </Route>
 
-            <Search/>
+            <PrivateRoute path='/search'>
 
-          </PrivateRoute>
-          <Route path='/login'>
-            <Login></Login>
+              <Search />
 
-          </Route>
-          <Route path='/'>
-            <Home></Home>
+            </PrivateRoute>
+            <Route path='/login'>
+              <Login></Login>
 
-          </Route>
-        </Switch>
-      </Router>
+            </Route>
+            <Route path='/home'>
+              <Home></Home>
 
-    </UserContext.Provider>
+            </Route>
+            <Route exact path='/'>
+              <Home></Home>
+
+            </Route>
+            <Route path='*/'>
+              <NoMatch></NoMatch>
+
+            </Route>
+          </Switch>
+        </Router>
+
+      </UserContext.Provider>
     </section>
   );
 }
